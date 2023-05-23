@@ -1,0 +1,8 @@
+#VM's Settings->Network on pass Attached to a Host-only Adapter
+
+#for navigating into the VM with local console
+#recommanded ssh connection at port 4242: 
+    ssh levelXX@IPmachine -p 4242
+
+#for copying files from the VM to local
+    scp -P 4242 levelXX@IPmachine:/absolute/path/of/file wheretocopy

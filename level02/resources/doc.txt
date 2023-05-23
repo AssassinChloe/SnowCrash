@@ -1,0 +1,32 @@
+su level02
+pass : f2av5il02puano7naaf6adaaf
+
+level02@SnowCrash:~$ ls -la
+total 24
+dr-x------ 1 level02 level02  120 Mar  5  2016 .
+d--x--x--x 1 root    users    340 Aug 30  2015 ..
+-r-x------ 1 level02 level02  220 Apr  3  2012 .bash_logout
+-r-x------ 1 level02 level02 3518 Aug 30  2015 .bashrc
+----r--r-- 1 flag02  level02 8302 Aug 30  2015 level02.pcap
+-r-x------ 1 level02 level02  675 Apr  3  2012 .profile
+
+Le .pcap extension de fichier est principalement associée avec Wireshark;
+un programme utilisé pour l'analyse de réseaux. 
+.pcap fichiers sont des fichiers de données créés en utilisant le programme et
+ils contiennent les données en paquets d'un réseau.
+https://osqa-ask.wireshark.org/questions/25682/unable-to-capture-passwords-with-wireshark/
+
+→ follow TCP stream (pour essayer de stream le password)
+analyser->suivre->flux TCP
+cf TCPStream file
+Password: ft_wandr...NDRel.L0L
+on efface les . et le nombre de caractere correspondant
+(. = un delete)
+ce qui nous donne ft_waNDReL0L 
+
+level02@SnowCrash:~$ su flag02
+Password: {ft_waNDReL0L}
+Don't forget to launch getflag !
+flag02@SnowCrash:~$ getflag
+Check flag.Here is your token : kooda2puivaav1idi4f57q8iq
+

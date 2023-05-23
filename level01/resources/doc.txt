@@ -1,0 +1,41 @@
+su level01
+pass : x24ti5gi3x0ol2eh4esiuxiassu
+
+level01@SnowCrash:~$ ls -la
+total 12
+dr-x------ 1 level01 level01  100 Mar  5  2016 .
+d--x--x--x 1 root    users    340 Aug 30  2015 ..
+-r-x------ 1 level01 level01  220 Apr  3  2012 .bash_logout
+-r-x------ 1 level01 level01 3518 Aug 30  2015 .bashrc
+-r-x------ 1 level01 level01  675 Apr  3  2012 .profile
+
+->no file, we search for file owned by user flag01
+
+level00@SnowCrash:~$ find / -user flag01 2> /dev/null
+
+->no file so we look over the internet :
+
+    Linux stocke les données des utilisateurs dans plusieurs fichiers de configuration dans le dossier /etc.
+    On y trouve :
+    /etc/passwd : stocke la liste des utilisateurs, avec leur UID, dossier home
+    /etc/group : stocke la liste des groupes
+    /etc/shadow : stocke les mots de passe
+    /etc/gshadow contient les mots de passe des groupes utilisateurs Linux
+
+#We have no right over the shadow's files but we see something when cat /etc/passwd for user flag01 !
+    
+flag01:42hDRfypTqqnw:3001:3001::/home/flag/flag01:/bin/bash
+
+#We copy the file (cf passwd) for using it on a personnal VM with John The Ripper 
+    sudo apt-get install john
+
+#we try connecting to flag01 with the return of John (cf john.pot file)
+level01@SnowCrash:~$ su flag01
+Password: {abcdfeg} 
+Don't forget to launch getflag !
+flag01@SnowCrash:~$ getflag
+Check flag.Here is your token : f2av5il02puano7naaf6adaaf
+
+
+
+

