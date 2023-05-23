@@ -1,0 +1,38 @@
+su level09
+pass : 25749xKZ8L7DkSCwJkT9dyv6f
+
+level09@SnowCrash:~$ ls -la
+total 24
+dr-x------ 1 level09 level09  140 Mar  5  2016 .
+d--x--x--x 1 root    users    340 Aug 30  2015 ..
+-r-x------ 1 level09 level09  220 Apr  3  2012 .bash_logout
+-r-x------ 1 level09 level09 3518 Aug 30  2015 .bashrc
+-rwsr-sr-x 1 flag09  level09 7640 Mar  5  2016 level09
+-r-x------ 1 level09 level09  675 Apr  3  2012 .profile
+----r--r-- 1 flag09  level09   26 Mar  5  2016 token
+
+level09@SnowCrash:~$ cat token
+f4kmm6p|=�p�n��DB�Du{��
+
+level09 in dogbolt contains these lines
+    while ( ++v4 < strlen(argv[1]) )
+        putchar(v4 + argv[1][v4]);
+    return fputc(10, stdout);
+
+so we tried 
+level09@SnowCrash:~$ ./level09 000000000000000000000000000000000000
+0123456789:;<=>?@ABCDEFGHIJKLMNOPQRS
+
+and wrote a reverse programm cf reverse.cpp 
+
+scp -P 4242 level09@192.168.56.102:/home/user/level09/token .
+
+➜  resources git:(master) ✗ g++ reverse.cpp
+➜  resources git:(master) ✗ ./a.out 
+f3iji1ju5yuevaus41q1afiuq
+
+level09@SnowCrash:~$ su flag09
+Password: {f3iji1ju5yuevaus41q1afiuq}
+Don't forget to launch getflag !
+flag09@SnowCrash:~$ getflag
+Check flag.Here is your token : s5cAJpM8ev6XHw998pRWG728z

