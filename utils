@@ -6,3 +6,12 @@
 
 #for copying files from the VM to local
     scp -P 4242 levelXX@IPmachine:/absolute/path/of/file wheretocopy
+
+#for analyzing code and find addresses
+    gdb binary
+    disas main
+    break
+    run
+    continue
+    set
+    s/x

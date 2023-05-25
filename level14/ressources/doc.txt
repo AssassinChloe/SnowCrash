@@ -1,0 +1,44 @@
+login level14
+pass 2A31L79asukciNyi8uppkEuSx
+
+no file here...
+so we try to hack directly the getflag file
+
+in dogbolt we look at the main:
+- it first look at ptrace, and exit if result is < 0
+- check if there is no preload or other hack sys
+- then getiud and return a token depending on the iud
+
+so we have to trick him into believing we are flag14
+according to passwd file (cf level00), iud of flag14 is 3014
+
+gdb /bin/getflag
+(gdb) disas main  // to understand where we need to act 
+Dump of assembler code for function main:
+   ...
+   0x08048989 <+67>:	call   0x8048540 <ptrace@plt>
+   0x0804898e <+72>:	test   %eax,%eax
+   ...
+   0x08048afd <+439>:	call   0x80484b0 <getuid@plt>
+   0x08048b02 <+444>:	mov    %eax,0x18(%esp)
+   ...
+(gdb) b *0x0804898e // put breakpoint at ptrace test
+Breakpoint 1 at 0x804898e
+(gdb) b *0x08048b02 // put breakpoint at research of getiud value
+Breakpoint 2 at 0x8048b02
+(gdb) run
+Starting program: /bin/getflag 
+
+Breakpoint 1, 0x0804898e in main ()
+(gdb) set $eax=0 // to bypass ptrace blocking
+(gdb) continue
+Continuing.
+
+Breakpoint 2, 0x08048b02 in main ()
+(gdb) set $eax=3014 // set iud = 3014
+(gdb) continue
+Continuing.
+Check flag.Here is your token : 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
+[Inferior 1 (process 761) exited normally]
+
+
