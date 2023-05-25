@@ -44,7 +44,7 @@ We create a script (cf script.sh) in /var/crash with +x rights
 ./level10 /tmp/link 127.0.0.1
 
 
-→ in terminal 1:
+=> in terminal 1:
 .*( )*.
 woupa2yuojeeaaed06riuj63c
 
