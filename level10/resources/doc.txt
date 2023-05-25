@@ -41,7 +41,7 @@ level10@SnowCrash:~$ nc -kl 6969
 Terminal 2:
 We create a script (cf script.sh) in /var/crash with +x rights
 /var/crash/script.sh &  // run in background
-./level10 /tmp/link 127.0.0.1
+./level10 /tmp/link 127.0.0.1 // may need several launch to adjust timing
 
 
 => in terminal 1:
