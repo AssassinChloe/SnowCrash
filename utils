@@ -11,7 +11,16 @@
     gdb binary
     disas main
     break
+    jump
     run
     continue
     set
     s/x
+
+#tools
+    dcode.fr
+    wireshark
+    john the ripper
+    dog bolt
+    gdb
+    chatGPT
