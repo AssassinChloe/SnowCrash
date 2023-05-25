@@ -41,4 +41,9 @@ Continuing.
 Check flag.Here is your token : 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
 [Inferior 1 (process 761) exited normally]
 
-
+level14@SnowCrash:~$ su flag14
+Password: 
+Congratulation. Type getflag to get the key and send it to me the owner of this 
+livecd :)
+flag14@SnowCrash:~$ getflag
+Check flag.Here is your token : 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
